@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\VacancyManagementApp.Application\VacancyManagementApp.Application.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.35">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\VacancyManagementApp.Infrastructure\VacancyManagementApp.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\VacancyManagementApp.Persistence\VacancyManagementApp.Persistence.csproj" />
   </ItemGroup>
