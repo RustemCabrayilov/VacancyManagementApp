@@ -1,16 +1,17 @@
-using Microsoft.AspNetCore.HttpLogging;
-using Microsoft.Extensions.Logging;
-using VacancyManagementApp.Persistence;
+﻿using VacancyManagementApp.Persistence;
+using VacancyManagementApp.Infrastructure;
+using VacancyManagementApp.Application;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddPersistenceServices();
-//builder.Services.AddInfrastructureServices();
-//builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices();
+builder.Services.AddApplicationServices();
 
 builder.Services.AddCors(options => options.AddPolicy("myclients", policy =>
-    policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
+    policy.WithOrigins("http://localhost:4200", "https://localhost:4200")   //url-lar dəyişə bilər / frontdaki url olmalıdır..
     .AllowAnyHeader()
     .AllowAnyMethod()
     .AllowCredentials()
