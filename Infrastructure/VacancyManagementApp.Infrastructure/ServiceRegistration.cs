@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using VacancyManagementApp.Application.Abstractions.Token;
+using VacancyManagementApp.Infrastructure.Services.Token;
 
 namespace VacancyManagementApp.Infrastructure
 {
@@ -11,7 +8,7 @@ namespace VacancyManagementApp.Infrastructure
     {
         public static void AddInfrastructureServices(this IServiceCollection serviceCollection)
         {
-            
+            serviceCollection.AddScoped<ITokenHandler, TokenHandler>();
         }
     }
 }

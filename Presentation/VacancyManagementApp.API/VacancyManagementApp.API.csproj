@@ -16,12 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\VacancyManagementApp.Application\VacancyManagementApp.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\VacancyManagementApp.Infrastructure\VacancyManagementApp.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\VacancyManagementApp.Persistence\VacancyManagementApp.Persistence.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controller\" />
   </ItemGroup>
 
 </Project>

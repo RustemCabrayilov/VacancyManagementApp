@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MediatR;
+using VacancyManagementApp.Application.Extensions;
 
 namespace VacancyManagementApp.Application
 {
@@ -11,7 +8,10 @@ namespace VacancyManagementApp.Application
     {
         public static void AddApplicationServices(this IServiceCollection collection)
         {
-            
+            collection.AddMediatR(typeof(ServiceRegistration).Assembly);
+
+            collection.AddAutoMapper(typeof(MappingEntity).Assembly);
+
         }
     }
 }

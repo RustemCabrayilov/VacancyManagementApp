@@ -7,14 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.35">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.33" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\VacancyManagementApp.Domain\VacancyManagementApp.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Commands\AppUser\LoginUser\" />
+    <Folder Include="Features\Commands\AppUser\VerifyResetToken\" />
+    <Folder Include="Features\Commands\AppUser\UpdatePassword\" />
+    <Folder Include="Features\Commands\AppUser\RefreshTokenLogin\" />
+    <Folder Include="Features\Commands\AppUser\ResetPassword\" />
+    <Folder Include="Features\Queries\" />
   </ItemGroup>
 
 </Project>
