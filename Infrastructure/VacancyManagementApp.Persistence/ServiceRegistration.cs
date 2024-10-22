@@ -48,6 +48,7 @@ namespace VacancyManagementApp.Persistence
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IVacancyService, VacancyService>();
             services.AddScoped<IInternalAuthentication, AuthService>();
 
 
