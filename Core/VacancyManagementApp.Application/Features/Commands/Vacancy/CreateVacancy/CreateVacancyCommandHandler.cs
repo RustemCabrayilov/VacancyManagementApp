@@ -11,7 +11,7 @@ using VacancyManagementApp.Application.DTOs.Vacancy;
 
 namespace VacancyManagementApp.Application.Features.Commands.Vacancy.CreateVacancy
 {
-    public class CreateVacancyCommandHandler : IRequestHandler<CreateVacancyCommandRequest, CreateVacancyCommandRepsonse>
+    public class CreateVacancyCommandHandler : IRequestHandler<CreateVacancyCommandRequest, CreateVacancyCommandResponse>
     {
         private readonly IMapper _mapper;
         private readonly IVacancyService _vacancyService;
@@ -22,11 +22,11 @@ namespace VacancyManagementApp.Application.Features.Commands.Vacancy.CreateVacan
             _vacancyService = vacancyService;
         }
 
-        public async Task<CreateVacancyCommandRepsonse> Handle(CreateVacancyCommandRequest request, CancellationToken cancellationToken)
+        public async Task<CreateVacancyCommandResponse> Handle(CreateVacancyCommandRequest request, CancellationToken cancellationToken)
         {
             var createVacancyDto = _mapper.Map<CreateVacancyDto>(request);
             var dto = await _vacancyService.CreateAsync(createVacancyDto);
-            var response =_mapper.Map<CreateVacancyCommandRepsonse>(dto);
+            var response =_mapper.Map<CreateVacancyCommandResponse>(dto);
             return response;
         }
     }

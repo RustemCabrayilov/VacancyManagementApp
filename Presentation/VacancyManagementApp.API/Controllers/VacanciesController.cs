@@ -17,10 +17,10 @@ namespace VacancyManagementApp.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]CreateVacancyCommandRequest request)
+        public async Task<IActionResult> CreateVacancy([FromBody]CreateVacancyCommandRequest request)
         {
-            var res = await _mediator.Send(request);
-            return Ok(res);
+            var response = await _mediator.Send(request);
+            return Ok(response);
         }
     }
 }

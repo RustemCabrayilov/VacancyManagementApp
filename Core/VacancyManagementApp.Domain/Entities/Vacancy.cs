@@ -7,7 +7,7 @@ using VacancyManagementApp.Domain.Common;
 
 namespace VacancyManagementApp.Domain.Entities
 {
-    public class Vacancy:BaseEntity
+    public class Vacancy: BaseEntity
     {
         public string Title { get; set; }
         public string Description { get; set; }

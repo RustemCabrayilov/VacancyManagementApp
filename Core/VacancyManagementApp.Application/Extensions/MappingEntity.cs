@@ -4,6 +4,7 @@ using VacancyManagementApp.Application.DTOs.User;
 using VacancyManagementApp.Application.DTOs.Vacancy;
 using VacancyManagementApp.Application.Features.Commands.AppUser.CreateUser;
 using VacancyManagementApp.Application.Features.Commands.Vacancy.CreateVacancy;
+using VacancyManagementApp.Domain.Entities;
 using VacancyManagementApp.Domain.Entities.Identity;
 
 namespace VacancyManagementApp.Application.Extensions
@@ -14,8 +15,11 @@ namespace VacancyManagementApp.Application.Extensions
         {
             CreateMap<CreateUserCommandRequest, CreateUserDto>();
             CreateMap<CreateUserResponseDto, CreateUserCommandResponse>();
-            CreateMap<CreateVacancyRepsonseDto, CreateVacancyCommandRepsonse>();
+
+            CreateMap<CreateVacancyResponseDto, CreateVacancyCommandResponse>();
             CreateMap<CreateVacancyCommandRequest, CreateVacancyDto>();
+            CreateMap<CreateVacancyDto, Vacancy>();
+
 
             CreateMap<CreateUserDto, AppUser>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid().ToString()))

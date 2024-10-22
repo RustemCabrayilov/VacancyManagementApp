@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VacancyManagementApp.Application.Features.Commands.Vacancy.CreateVacancy
 {
-    public class CreateVacancyCommandRequest:IRequest<CreateVacancyCommandRepsonse>
+    public class CreateVacancyCommandRequest:IRequest<CreateVacancyCommandResponse>
     {
         public string Title { get; set; }
         public string Description { get; set; }

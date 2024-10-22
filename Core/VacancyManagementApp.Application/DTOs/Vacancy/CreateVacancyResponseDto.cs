@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VacancyManagementApp.Application.Features.Commands.Vacancy.CreateVacancy
+namespace VacancyManagementApp.Application.DTOs.Vacancy
 {
-    public class CreateVacancyCommandRepsonse
+    public class CreateVacancyResponseDto
     {
         public bool Succeeded { get; set; }
         public string Message { get; set; }
