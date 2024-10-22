@@ -10,7 +10,9 @@
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.33" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,11 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Commands\AppUser\LoginUser\" />
-    <Folder Include="Features\Commands\AppUser\VerifyResetToken\" />
-    <Folder Include="Features\Commands\AppUser\UpdatePassword\" />
-    <Folder Include="Features\Commands\AppUser\RefreshTokenLogin\" />
-    <Folder Include="Features\Commands\AppUser\ResetPassword\" />
     <Folder Include="Features\Queries\" />
   </ItemGroup>
 

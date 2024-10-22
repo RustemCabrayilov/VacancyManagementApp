@@ -11,7 +11,7 @@ namespace VacancyManagementApp.Application.Abstractions.Services
     public interface IUserService
     {
         Task<CreateUserResponseDto> CreateAsync(CreateUserDto model);
-        //Task UpdateRefreshTokenAsync(string refreshToken, AppUser user, DateTime accessTokenDate, int addOnAccessTokenDate);
-        //Task UpdatePasswordAsync(string userId, string resetToken, string newPassword);
+        Task UpdateRefreshTokenAsync(string refreshToken, AppUser user, DateTime accessTokenDate, int addOnAccessTokenDate);
+        Task UpdatePasswordAsync(string userId, string resetToken, string newPassword);
     }
 }

@@ -4,7 +4,7 @@ namespace VacancyManagementApp.Application.Abstractions.Services
 {
     public interface IAuthService : IInternalAuthentication
     {
-        Task PasswordResetAsync(string email);
+        Task ResetPasswordAsync(string email);
         Task<bool> VerifyResetTokenAsync(string resetToken, string userId);
     }
 }

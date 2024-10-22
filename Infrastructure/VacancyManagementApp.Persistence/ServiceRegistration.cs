@@ -7,6 +7,7 @@ using VacancyManagementApp.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using VacancyManagementApp.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
+using VacancyManagementApp.Application.Abstractions.Services.Authentications;
 
 
 namespace VacancyManagementApp.Persistence
@@ -46,8 +47,8 @@ namespace VacancyManagementApp.Persistence
 
 
             services.AddScoped<IUserService, UserService>();
-            //services.AddScoped<IAuthService, AuthService>();
-            //services.AddScoped<IInternalAuthentication, AuthService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IInternalAuthentication, AuthService>();
 
 
 

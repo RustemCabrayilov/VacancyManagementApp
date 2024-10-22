@@ -2,7 +2,11 @@
 using Microsoft.AspNetCore.Identity;
 using VacancyManagementApp.Application.Abstractions.Services;
 using VacancyManagementApp.Application.DTOs.User;
+using VacancyManagementApp.Application.Exceptions;
+using VacancyManagementApp.Domain.Entities.Identity;
 using U = VacancyManagementApp.Domain.Entities.Identity;
+using VacancyManagementApp.Application.Helpers;
+
 
 namespace VacancyManagementApp.Persistence.Services
 {
@@ -32,6 +36,32 @@ namespace VacancyManagementApp.Persistence.Services
                     response.Message += $"{error.Code} - {error.Description}\n";
 
             return response;
+        }
+
+        public async Task UpdateRefreshTokenAsync(string refreshToken, AppUser user, DateTime accessTokenDate, int addOnAccessTokenDate)
+        {
+            if (user != null)
+            {
+                user.RefreshToken = refreshToken;
+                user.RefreshTokenEndDate = accessTokenDate.AddSeconds(addOnAccessTokenDate);
+                await _userManager.UpdateAsync(user);
+            }
+            else
+                throw new NotFoundUserException();
+        }
+
+        public async Task UpdatePasswordAsync(string userId, string resetToken, string newPassword)
+        {
+            AppUser user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                resetToken = resetToken.UrlDecode();
+                IdentityResult result = await _userManager.ResetPasswordAsync(user, resetToken, newPassword);
+                if (result.Succeeded)
+                    await _userManager.UpdateSecurityStampAsync(user);
+                else
+                    throw new PasswordChangeFailedException();
+            }
         }
     }
 }
