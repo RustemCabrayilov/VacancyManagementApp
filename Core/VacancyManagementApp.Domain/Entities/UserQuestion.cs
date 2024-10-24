@@ -9,7 +9,5 @@ namespace VacancyManagementApp.Domain.Entities
         public AppUser AppUser { get; set; }
         public Guid QuestionId { get; set; }
         public Question Question { get; set; }
-    
-
     }
 }

@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VacancyManagementApp.Application.Features.Commands.Vacancy.CreateVacancy;
+using VacancyManagementApp.Application.Features.Commands.Vacancy.RemoveVacancy;
+using VacancyManagementApp.Application.Features.Commands.Vacancy.UpdateVacancy;
 
 namespace VacancyManagementApp.API.Controllers
 {
@@ -16,10 +18,25 @@ namespace VacancyManagementApp.API.Controllers
             this._mediator = mediator;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateVacancy([FromBody]CreateVacancyCommandRequest request)
+        [HttpPost("create-vacancy")]
+        public async Task<IActionResult> CreateVacancy([FromBody]CreateVacancyCommandRequest createVacancyCommandRequest)
         {
-            var response = await _mediator.Send(request);
+            var response = await _mediator.Send(createVacancyCommandRequest);
+            return Ok(response);
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> RemoveVacancy([FromRoute] RemoveVacancyCommandRequest removeVacancyCommandRequest)
+        {
+            RemoveVacancyCommandResponse response = await _mediator.Send(removeVacancyCommandRequest);
+            return Ok(response);
+
+        }
+
+        [HttpPut("update-vacancy")]
+        public async Task<IActionResult> UpdateVacancy([FromBody] UpdateVacancyCommandRequest updateVacancyCommandRequest)
+        {
+            var response = await _mediator.Send(updateVacancyCommandRequest);
             return Ok(response);
         }
     }

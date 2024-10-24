@@ -3,21 +3,24 @@ using VacancyManagementApp.Application.Abstractions.Services;
 using VacancyManagementApp.Application.DTOs.Vacancy;
 using VacancyManagementApp.Application.Repositories;
 using VacancyManagementApp.Domain.Entities;
+using VacancyManagementApp.Persistence.Repositories;
 
 namespace VacancyManagementApp.Persistence.Services
 {
     public class VacancyService : IVacancyService
     {
         private readonly IVacancyWriteRepository _vacancyWriteRepository;
+        private readonly IVacancyReadRepository _vacancyReadRepository;
         private readonly IMapper _mapper;
 
-        public VacancyService(IVacancyWriteRepository vacancyWriteRepository, IMapper mapper)
+        public VacancyService(IVacancyWriteRepository vacancyWriteRepository, IMapper mapper, IVacancyReadRepository vacancyReadRepository)
         {
             _vacancyWriteRepository = vacancyWriteRepository;
             _mapper = mapper;
+            _vacancyReadRepository = vacancyReadRepository;
         }
 
-        public async Task<CreateVacancyResponseDto> CreateAsync(CreateVacancyDto model)
+        public async Task<CreateVacancyResponseDto> CreateVacancyAsync(CreateVacancyDto model)
         {
             var vacancy = _mapper.Map<Vacancy>(model);
             var isEntityAdded = await _vacancyWriteRepository.AddAsync(vacancy);
@@ -31,6 +34,51 @@ namespace VacancyManagementApp.Persistence.Services
             };
             
         }
+        public async Task<RemoveVacancyResponseDto> RemoveVacancyAsync(string id)
+        {
+            var vacancy = await _vacancyReadRepository.GetByIdAsync(id);
+            var response = new RemoveVacancyResponseDto();
+
+            if (vacancy == null)
+            {
+                response.Succeeded = false;
+                response.Message = "Vacancy not found.";
+                return response;
+            }
+
+            _vacancyWriteRepository.Remove(vacancy);
+            await _vacancyWriteRepository.SaveAsync();
+
+            response.Succeeded = true;
+            response.Message = "Vacancy deleted successfully!";
+            return response;
+        }
+
+        public async Task<UpdateVacancyResponseDto> UpdateVacancyAsync(UpdateVacancyDto model)
+        {
+            var vacancy = await _vacancyReadRepository.GetByIdAsync(model.Id);
+
+            if (vacancy == null)
+            {
+                return new UpdateVacancyResponseDto
+                {
+                    Succeeded = false,
+                    Message = "Vacancy not found."
+                };
+            }
+
+            _mapper.Map(model, vacancy);
+
+            await _vacancyWriteRepository.SaveAsync();
+
+            return new UpdateVacancyResponseDto
+            {
+                Succeeded = true,
+                Message = "Vacancy updated successfully!"
+            };
+        }
+
+
 
     }
 }

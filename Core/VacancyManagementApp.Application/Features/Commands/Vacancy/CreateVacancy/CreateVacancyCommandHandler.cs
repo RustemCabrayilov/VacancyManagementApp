@@ -25,7 +25,7 @@ namespace VacancyManagementApp.Application.Features.Commands.Vacancy.CreateVacan
         public async Task<CreateVacancyCommandResponse> Handle(CreateVacancyCommandRequest request, CancellationToken cancellationToken)
         {
             var createVacancyDto = _mapper.Map<CreateVacancyDto>(request);
-            var dto = await _vacancyService.CreateAsync(createVacancyDto);
+            var dto = await _vacancyService.CreateVacancyAsync(createVacancyDto);
             var response =_mapper.Map<CreateVacancyCommandResponse>(dto);
             return response;
         }

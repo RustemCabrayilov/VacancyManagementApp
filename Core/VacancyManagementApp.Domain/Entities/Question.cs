@@ -7,5 +7,7 @@ namespace VacancyManagementApp.Domain.Entities
         public string Description { get; set; }
         public List<Answer> Answers { get; set; }
         public List<UserQuestion> UserQuestions { get; set; }
+        public Guid VacancyId { get; set; }
+        public Vacancy Vacancy { get; set; }
     }
 }

@@ -4,6 +4,8 @@ namespace VacancyManagementApp.Application.Abstractions.Services
 {
     public interface IVacancyService
     {
-        Task<CreateVacancyResponseDto> CreateAsync(CreateVacancyDto model);
+        Task<CreateVacancyResponseDto> CreateVacancyAsync(CreateVacancyDto model);
+        Task<UpdateVacancyResponseDto> UpdateVacancyAsync(UpdateVacancyDto model);
+        Task<RemoveVacancyResponseDto> RemoveVacancyAsync(string id);
     }
 }
